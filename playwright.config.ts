@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv'
 
 /**
  * Read environment variables from file.
@@ -11,7 +12,12 @@ import { defineConfig, devices } from '@playwright/test';
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
+dotenv.config({
+  path:process.env.ENV_NAME?`./env-files/env.${process.env.ENV_NAME}`: './env-files/env.demo',
+});
+
 export default defineConfig({
+  
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -32,23 +38,36 @@ export default defineConfig({
     trace: 'on-first-retry',
     headless:false,
   },
+   
   
-
   /* Configure projects for major browsers */
   projects: [
     {
+      name:'Setup',
+      testIgnore:'global.setup.ts'
+    },
+    {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      dependencies:['Setup'],
+      use: { ...devices['Desktop Chrome'],
+        storageState:'./playwright/.auth/auth.json',
+       },
     },
 
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+      dependencies:['Setup'],
+      use: { ...devices['Desktop Firefox'],
+        storageState:'./playwright/.auth/auth.json',
+       },
     },
 
     {
       name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
+      dependencies:['Setup'],
+      use: { ...devices['Desktop Safari'],
+        storageState:'./playwright/.auth/auth.json',
+       },
     },
 
     /* Test against mobile viewports. */
@@ -78,4 +97,5 @@ export default defineConfig({
   //   url: 'http://localhost:3000',
   //   reuseExistingServer: !process.env.CI,
   // },
+  
 });

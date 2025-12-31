@@ -1,5 +1,5 @@
-import { test} from '../fixtures/pom-fixtures'
-import { LoginPage } from '../pages/LoginPage';
+import { test} from '../../fixtures/pom-fixtures'
+import { LoginPage } from '../../pages/LoginPage';
 
 
 
