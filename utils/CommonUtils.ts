@@ -1,33 +1,42 @@
-import CryptoJS from 'crypto-js'
+import cryptoJs from 'crypto-js';
 
 export default class CommonUtils {
-    private secreKey: string;
 
+    private secretKey: string;
+
+    /**
+     * Initilizing secretKey
+     */
     constructor() {
-        this.secreKey = process.env.SECRET_KEY ? process.env.SECRET_KEY : '';
+        //this.secretKey = process.env.SECRET_KEY ? process.env.SECRET_KEY : "";
 
         if (process.env.SECRET_KEY) {
-            this.secreKey = process.env.SECRET_KEY;
+            this.secretKey = process.env.SECRET_KEY;
         } else {
-            throw new Error('Please provide Secrey ket')
+            throw new Error("Please provide Secret Key while starting execution.");
         }
-
     }
+
+    /**
+     * Provide Encrypted Data from String
+     * @param data 
+     * @returns encryptedData
+     */
     public encryptData(data: string) {
-        return CryptoJS.AES.encrypt(data, this.secreKey).toString();
-
-
+        const encryptedData = cryptoJs.AES.encrypt(data, this.secretKey).toString();
+        console.log(encryptedData);
+        return encryptedData;
     }
-    public decryptData(encData: string) {
-        return CryptoJS.AES.decrypt(encData, this.secreKey).toString(CryptoJS.enc.Utf8);
 
+    /**
+     * Provide Decrypted data in string format
+     * @param encData 
+     * @returns decryptedData
+     */
+    public decryptData(encData : string){
+        const decryptedData = cryptoJs.AES.decrypt(encData, this.secretKey).toString(cryptoJs.enc.Utf8);
+        return decryptedData;
     }
+
+
 }
-
-
-
-
-
-
-
-
