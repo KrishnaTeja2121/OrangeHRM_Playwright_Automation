@@ -1,5 +1,5 @@
 import { test, expect } from '../../fixtures/hooks-fixture';
-import loginModuleData from '../../data/ui-data/login-module-data.json';
+import loginModuleData from '../../data/login-module-data.json';
 
 test.use({
     storageState: {
@@ -38,7 +38,7 @@ test.describe("Invalid Login Test", {
     }, async ({ gotoUrl, loginPage, commonUtils }) => {
         const password = commonUtils.decryptData(process.env.PASSWORD!);
         await loginPage.loginOrangeHrm(loginModuleData.wrong_username, password);
-        await expect(loginPage.invelidCredentialsErrorPopup).toHaveText(loginModuleData.invelid_credentials_text);
+        await expect(loginPage.invelidCredentialsErrorPopup).toHaveText(loginModuleData.invalid_credentials_text);
         await expect(loginPage.userNameInput).toBeVisible();
     })
 
@@ -52,7 +52,7 @@ test.describe("Invalid Login Test", {
         }
     }, async ({ gotoUrl, loginPage, commonUtils }) => {
         await loginPage.loginOrangeHrm(loginModuleData.wrong_username, loginModuleData.wrong_password);
-        await expect(loginPage.invelidCredentialsErrorPopup).toHaveText(loginModuleData.invelid_credentials_text);
+        await expect(loginPage.invelidCredentialsErrorPopup).toHaveText(loginModuleData.invalid_credentials_text);
         await expect(loginPage.userNameInput).toBeVisible();
     })
 

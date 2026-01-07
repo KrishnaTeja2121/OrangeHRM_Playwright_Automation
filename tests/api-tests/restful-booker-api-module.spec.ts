@@ -1,6 +1,6 @@
 import { test, expect } from '../../fixtures/hooks-fixture'
-import apiPathData from '../../data/api-data/api-path-data.json';
-import restfulApiData from '../../data/api-data/restful-booker-api-module-data.json'
+import apiPathData from '../../data/api-path-data.json';
+import restfulApiData from '../../data/resful-bookerapp-module-app.json'
 
 test("API Testing", async ({ request }) => {
     const bookingIds = await request.get('booking');
