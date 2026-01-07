@@ -1,5 +1,5 @@
 import { APIRequestContext } from "@playwright/test";
-import apiPathData from '../data/api-data/api-path-data.json'
+import apiPathData from '../data/api-path-data.json'
 import CommonUtils from "./CommonUtils";
 
 export default class CommonApiUtils{
