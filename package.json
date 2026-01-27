@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env ENV_NAME=demo npx playwright test"
+    "test": "cross-env SECRET_KEY=wishinfinite ENV_NAME=demo npx playwright test"
   },
   "keywords": [],
   "author": "",
